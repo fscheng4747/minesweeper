@@ -6,8 +6,8 @@
 .grid {
   height: 400px;
   width: 400px;
-  display: flex;
-  flex-wrap: wrap;
+  display: flex; /* stay in line instead of stack*/
+  flex-wrap: wrap;/* no idea */
   background-color: #dcd6bc;
   margin-left: 50px;
   margin-top: 20px;

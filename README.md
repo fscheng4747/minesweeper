@@ -1,6 +1,7 @@
 # minesweeper
-A simplified game of minesweeper using vanilla JavaScript
+Next begin with 25:20
 
+A simplified game of minesweeper using vanilla JavaScript
 
 In this walkthrough, I show you how to build Minesweeper in pure JavaScript, HTML, and CSS. 
 
@@ -36,3 +37,5 @@ I would love to see your finished game to please do tag me on YouTube, Twitter (
 
 #minesweeper
 #javscript_game
+## Reference
+https://www.youtube.com/watch?v=W0No1JDc6vE 
