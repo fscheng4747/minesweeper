@@ -11,7 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let squares = []
   let isGameOver = false
 
-  //create Board
+  /**
+   * create Board
+   * including:
+   *  create each small square
+   * click on each square
+   * algorithm
+  */
   function createBoard() {
     flagsLeft.innerHTML = bombAmount
 
@@ -37,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
       grid.appendChild(square);
       squares.push(square);
 
-      //normal click
+      //click each square
       square.addEventListener('click', function(e) {
-        click(square)
+        click(square);
       })
 
       //cntrl and left click
@@ -61,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isLeftEdge = (i % width === 0);
       const isRightEdge = (i % width === width -1);
 
-      // safe squares
+      // count how many boombs nearby (has bug!)
       if (squares[i].classList.contains('valid')) {
         // check left side of the safe square (not index 0, not on left edge)
         if (i > 0 && !isLeftEdge && squares[i -1].classList.contains('bomb')) total ++; 
@@ -79,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   createBoard();
+  // ---------- from here outside creatBroad() ------------
 
   //add Flag with right click
   function addFlag(square) {
@@ -101,13 +108,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //click on square actions
   function click(square) {
+    // get current ID of the square for checkSquare()
     let currentId = square.id
-    if (isGameOver) return
-    if (square.classList.contains('checked') || square.classList.contains('flag')) return
+
+    // if game is over, can't click anymore
+    if (isGameOver) return;
+    // if square is clicked, can't click anymore
+    if (square.classList.contains('checked') || square.classList.contains('flag')) return;
+
+    // if click boob the game is over
     if (square.classList.contains('bomb')) {
-      gameOver(square)
+      gameOver(square);
     } else {
-      let total = square.getAttribute('data')
+      let total = square.getAttribute('data');
       if (total !=0) {
         square.classList.add('checked')
         if (total == 1) square.classList.add('one')
@@ -122,8 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
     square.classList.add('checked')
   }
 
-
-  //check neighboring squares once square is clicked
+  /**
+   * check neighboring squares once square is clicked
+   * @param {*} square 
+   * @param {int} currentId 
+   */
   function checkSquare(square, currentId) {
     const isLeftEdge = (currentId % width === 0)
     const isRightEdge = (currentId % width === width -1)

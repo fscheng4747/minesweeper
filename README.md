@@ -1,5 +1,5 @@
 # minesweeper
-Next begin with 25:20
+Next begin at 31:30
 
 A simplified game of minesweeper using vanilla JavaScript
 
