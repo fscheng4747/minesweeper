@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let bombAmount = 20
   let flags = 0
   let squares = []
+  // initial game over
   let isGameOver = false
 
   /**
@@ -128,28 +129,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (total == 3) square.classList.add('three')
         if (total == 4) square.classList.add('four')
         square.innerHTML = total
-        return
+        return;
       }
-      checkSquare(square, currentId)
+      // if total == 0 than 
+      checkNeighborSquares(square, currentId);
     }
     square.classList.add('checked')
   }
 
   /**
-   * check neighboring squares once square is clicked
+   * check neighboring squares once square is clicked (for data == 0)
    * @param {*} square 
-   * @param {int} currentId 
+   * @param {string} currentId 
    */
-  function checkSquare(square, currentId) {
-    const isLeftEdge = (currentId % width === 0)
-    const isRightEdge = (currentId % width === width -1)
+  function checkNeighborSquares(square, currentId) {
+    const isLeftEdge = (currentId % width === 0);
+    const isRightEdge = (currentId % width === width -1);
 
+    // setTimeout() = do the function after 10 milliseconds
     setTimeout(() => {
+      // algorithm to 
       if (currentId > 0 && !isLeftEdge) {
-        const newId = squares[parseInt(currentId) -1].id
+        const leftNextId = squares[parseInt(currentId) -1].id;
         //const newId = parseInt(currentId) - 1   ....refactor
-        const newSquare = document.getElementById(newId)
-        click(newSquare)
+        const newSquare = document.getElementById(leftNextId);
+        click(newSquare);
       }
       if (currentId > 9 && !isRightEdge) {
         const newId = squares[parseInt(currentId) +1 -width].id
@@ -196,7 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 10)
   }
 
-  //game over
+  /**
+   * Game over
+   * @param {*} square 
+   */
   function gameOver(square) {
     result.innerHTML = 'BOOM! Game Over!'
     isGameOver = true
