@@ -1,4 +1,4 @@
-# 踩地雷 (minesweeper )from @ania_kubow (Instagram, Twitter)
+# 踩地雷 (minesweeper ) from @ania_kubow (Instagram, Twitter)
 
 A simplified game of minesweeper using vanilla JavaScript
 
